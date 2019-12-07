@@ -23,6 +23,19 @@ RSpec.describe User, type: :model do
       user = build(:user, :without_password)
       expect(user.valid?).to be(false)
     end
+    it 'should have 40 hours by default' do
+      user = create(:user)
+      expect(user.hours_per_week).to eq(40)
+    end
+    it 'should be user by default' do
+      user = create(:user)
+      expect(user.user?).to be(true)
+    end
+    it 'should not be admin or supervisor' do
+      user = create(:user)
+      expect(user.admin?).to be(false)
+      expect(user.supervisor?).to be(false)
+    end
   end
 
   context 'Update user' do
@@ -49,6 +62,16 @@ RSpec.describe User, type: :model do
       expect{
         @user.update!(password: nil)
       }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+    it 'should update role to supervisor' do
+      @user.update(role: 'supervisor')
+      @user.reload
+      expect(@user.role).to eq('supervisor')
+    end
+    it 'should update role to admin' do
+      @user.update(role: 'admin')
+      @user.reload
+      expect(@user.role).to eq('admin')
     end
   end
 
