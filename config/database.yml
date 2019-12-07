@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: localhost
+  database: clock_in_out_application_development
+  username: postgres
+
+test:
+  <<: *default
+  host: localhost
+  database: clock_in_out_application_test
+  username: postgres
+
+production:
+  <<: *default
+  database: clock_in_out_application_production
+  username: clock_in_out_application
+  password: <%= ENV['CLOCK_IN_OUT_APPLICATION_DATABASE_PASSWORD'] %>
