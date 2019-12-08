@@ -85,4 +85,28 @@ RSpec.describe TimeReg, type: :model do
       }.to change(TimeReg,:count).by(-1)
     end
   end
+  context 'Recalculation after create time_req' do
+    before(:each) do
+      @day = create(:day)
+      @time1 = create(:time_reg, day: @day)
+      @time2 = create(:time_reg, :lunch_time, day: @day)
+      @time3 = create(:time_reg, :end_lunch_time, day: @day)
+      @time4 = create(:time_reg, :end_day, day: @day)
+    end
+    
+    it 'should update day hour to 3 and odd to false' do
+      @time3.destroy
+      @time4.destroy
+      @day.reload
+      expect(@day.hours).to eq("03:00:00")
+      expect(@day.odd).to be(false)
+    end
+
+    it 'should update day hour to 3 and odd to true' do
+      @time4.destroy
+      @day.reload
+      expect(@day.hours).to eq("03:00:00")
+      expect(@day.odd).to be(true)
+    end
+  end
 end
