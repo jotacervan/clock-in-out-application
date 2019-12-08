@@ -85,5 +85,17 @@ RSpec.describe User, type: :model do
         @user.destroy
       }.to change(User,:count).by(-1)
     end
+    it 'should destroy every time_reg and days when destroying a user' do
+      day = @user.days.create(date_reg: DateTime.now)
+      time_reg = day.time_regs.create(time_reg: DateTime.now)
+      day_id, time_id = day.id, time_reg.id
+      @user.destroy
+      expect{
+        Day.find(day_id)
+      }.to raise_error(ActiveRecord::RecordNotFound)
+      expect{
+        TimeReg.find(time_id)
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
