@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
       }.to change(User,:count).by(-1)
     end
     it 'should destroy every time_reg and days when destroying a user' do
-      day = @user.days.create(date_reg: DateTime.now)
+      day = @user.days.create(date_reg: DateTime.now, month: DateTime.now.strftime('%m'), week: DateTime.now.strftime('%U'))
       time_reg = day.time_regs.create(time_reg: DateTime.now)
       day_id, time_id = day.id, time_reg.id
       @user.destroy

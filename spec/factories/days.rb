@@ -7,8 +7,16 @@ FactoryBot.define do
     odd { false }
     user
 
-    trait :wihout_date_reg do
+    trait :without_date_reg do
       date_reg { nil }
+    end
+
+    trait :without_month do
+      month { nil }
+    end
+
+    trait :without_week do
+      week { nil }
     end
   end
 end
