@@ -1,18 +1,23 @@
 import React from "react"
+import { BrowserRouter } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import api from '../services/api'
+import Routes from './Routes'
+import { Container } from './style'
+import AppBar from  './app_bar'
 
 export default function Home() {
 
-  async function logOut(){
-    await api.delete('/users/sign_out')
-    location.reload()
-  }
-
   return (
-    <>
-      <h1>First React Component</h1>
-      <button type="button" onClick={logOut}>Logout</button>
-    </>
+    <BrowserRouter>
+      <Container >
+        <CssBaseline />
+        <AppBar />
+        <main className='main'>
+          <div className='toolbar'/>
+          <Routes />
+        </main>
+      </Container>
+    </BrowserRouter>
   )
 }
