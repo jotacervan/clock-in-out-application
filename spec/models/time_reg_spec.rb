@@ -20,6 +20,45 @@ RSpec.describe TimeReg, type: :model do
         time_reg = TimeReg.create!()
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
+    it 'should change time_reg count by +2' do
+      expect{
+        day = create(:day)
+        create(:time_reg, day: day)
+        create(:time_reg, :end_day, day: day)
+      }.to change(TimeReg,:count).by(+2)
+    end
+    it 'should update day to 8 hours and odd is false' do
+      day = create(:day)
+      create(:time_reg, day: day)
+      day.reload
+      create(:time_reg, :lunch_time, day: day)
+      day.reload
+      create(:time_reg, :end_lunch_time, day: day)
+      day.reload
+      create(:time_reg, :end_day, day: day)
+      day.reload
+      expect(day.hours).to eq("08:00:00")
+      expect(day.odd).to be(false)
+    end
+    it 'should update day to 3 hours and odd is false' do
+      day = create(:day)
+      create(:time_reg, day: day)
+      create(:time_reg, :lunch_time, day: day)
+      day.reload
+      expect(day.hours).to eq("03:00:00")
+      expect(day.odd).to be(false)
+    end
+    it 'should update day to 3 hours and odd is true' do
+      day = create(:day)
+      create(:time_reg, day: day)
+      day.reload
+      create(:time_reg, :lunch_time, day: day)
+      day.reload
+      create(:time_reg, :end_lunch_time, day: day)
+      day.reload
+      expect(day.hours).to eq("03:00:00")
+      expect(day.odd).to be(true)
+    end
   end
   context 'Update time_reg' do
     before(:each) do
