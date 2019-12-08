@@ -4,15 +4,15 @@ class DashboardController < ApplicationController
 
   def index
     week = DateTime.now.strftime('%U')
-    odd_days = current_user.days.where(odd: true).count
+    odd_days = current_user.days.where(odd: true)
     week_days = current_user.days.where(week: week)
     total_seconds = week_days.reduce{|total, ops| (total.seconds || total) + ops.seconds }
-    worked_hours = format_duration(total_seconds)
+    worked_hours = format_duration(total_seconds || 0)
     week_seconds = current_user.hours_per_week * 3600
-    diff = calc_diff(total_seconds, week_seconds)
+    diff = calc_diff(total_seconds || 0, week_seconds)
     week_balance = format_duration(diff)
     
-    render json: { odd_days: odd_days, week_balance: week_balance } , status: :ok
+    render json: { odd_days: odd_days, week_balance: worked_hours } , status: :ok
   end
 
   protected
