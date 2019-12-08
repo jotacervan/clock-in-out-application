@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :day do
     date_reg { "2019-12-07" }
-    month { 1 }
-    week { 1 }
-    seconds { 3600 }
+    month { 12 }
+    week { 49 }
+    seconds { 0 }
     odd { false }
     user
 
