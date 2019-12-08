@@ -5,4 +5,6 @@ class User < ApplicationRecord
   enum role: { admin: 0, supervisor: 1, user: 2 }
 
   validates :name, :email, presence: true
+
+  has_many :days, dependent: :destroy
 end
