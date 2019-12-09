@@ -5,6 +5,10 @@ class TimeReg < ApplicationRecord
 
   after_commit :update_day
 
+  def time
+    self.time_reg.strftime('%l:%M %p')
+  end
+
   def update_day
     return if self.day.destroyed?
     if destroyed?

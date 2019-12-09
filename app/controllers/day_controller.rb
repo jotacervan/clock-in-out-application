@@ -3,12 +3,15 @@ class DayController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    days = current_user.days.order(:date_reg)
-    render json: days.to_json(methods: [:hours]), status: :ok
+    days = current_user.days.order(date_reg: :desc)
+    render json: days.to_json(methods: [:hours, :status, :month_name]), status: :ok
   end
 
   def show
     day = Day.find(params[:id])
-    render json: day.to_json(methods: [:hours], include: [:time_regs]), status: :ok
+    render json: day.to_json(
+      methods: [:hours, :status], 
+      include: { time_regs: { methods: [:time] } }
+    ), status: :ok
   end
 end

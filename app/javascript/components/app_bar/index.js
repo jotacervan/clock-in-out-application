@@ -27,7 +27,7 @@ import {
 import { Container, ModalContent } from './style';
 import api from '../../services/api';
 
-const Menu = () => (
+const Menu = ({handleLogOut}) => (
   <div>
     <div className='toolbar'></div>
     <Divider />
@@ -36,10 +36,14 @@ const Menu = () => (
         <ListItemIcon><InboxIcon /></ListItemIcon>
         <ListItemText primary='Dashboard' />
       </ListItem>
+      <ListItem button component="a" href="/clock_events">
+        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemText primary='Clock Events' />
+      </ListItem>
     </List>
     <Divider />
     <List>
-      <ListItem button>
+      <ListItem button onClick={handleLogOut}>
         <ListItemIcon><InboxIcon /></ListItemIcon>
         <ListItemText primary='Logout' />
       </ListItem>
@@ -72,6 +76,7 @@ export default function TopBar(props){
 
   const handleAddEntry = async () => {
     await api.post('/time_reg', { time_reg: selectedDate }).then(res => {
+      handleClose();
       Swal.fire({
         icon: 'success',
         title: 'Time entry added successfully',
@@ -164,7 +169,7 @@ export default function TopBar(props){
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <Menu />
+            <Menu handleLogOut={handleLogOut} />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -173,7 +178,7 @@ export default function TopBar(props){
             variant="permanent"
             open
           >
-            <Menu />
+            <Menu handleLogOut={handleLogOut} />
           </Drawer>
         </Hidden>
       </nav>
