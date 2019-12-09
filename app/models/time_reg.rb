@@ -10,9 +10,10 @@ class TimeReg < ApplicationRecord
   end
 
   def update_day
-    return if self.day.destroyed?
+    return if self.day.nil? || self.day.destroyed?
     if destroyed?
-      day = Day.find(self.day_id)
+      day = Day.find_by(id: self.day_id)
+      return if day.nil?
     else
       day = self.day
     end
