@@ -30,7 +30,7 @@ export default function ClockEvents() {
     },
     { name: 'Month', selector: 'month_name', sortable: true, center: true },
     { name: 'Week', selector: 'week', sortable: true, center: true },
-    { name: 'Hours', selector: 'hours', sortable: true, center: true },
+    { name: 'Worked Hours', selector: 'hours', sortable: true, center: true },
     { name: 'Missing', selector: 'status', sortable: true, center: true }
   ];
   const [filterText, setFilterText] = useState('');
@@ -106,7 +106,7 @@ export default function ClockEvents() {
                     <KeyboardTimePicker
                       margin="normal"
                       id="time-picker"
-                      label="Time picker"
+                      label="Time"
                       value={selectedTime.time_reg}
                       onChange={handleTimeChange}
                       KeyboardButtonProps={{

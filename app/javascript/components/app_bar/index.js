@@ -3,6 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LockIcon from '@material-ui/icons/Lock';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import IconButton from '@material-ui/core/IconButton';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
@@ -33,18 +38,26 @@ const Menu = ({handleLogOut}) => (
     <Divider />
     <List>
       <ListItem button component="a" href="/">
-        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemIcon><HomeWorkIcon /></ListItemIcon>
         <ListItemText primary='Dashboard' />
       </ListItem>
       <ListItem button component="a" href="/clock_events">
-        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemIcon><AccessTimeIcon /></ListItemIcon>
         <ListItemText primary='Clock Events' />
+      </ListItem>
+      <ListItem button component="a" href="/edit_profile">
+        <ListItemIcon><PermIdentityIcon /></ListItemIcon>
+        <ListItemText primary='Edit Profile' />
+      </ListItem>
+      <ListItem button component="a" href="/change_password">
+        <ListItemIcon><LockIcon /></ListItemIcon>
+        <ListItemText primary='Change Password' />
       </ListItem>
     </List>
     <Divider />
     <List>
       <ListItem button onClick={handleLogOut}>
-        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemIcon><ExitToAppIcon /></ListItemIcon>
         <ListItemText primary='Logout' />
       </ListItem>
     </List>
@@ -117,7 +130,7 @@ export default function TopBar(props){
                 format="yyyy-MM-dd"
                 margin="normal"
                 id="date-picker-inline"
-                label="Date picker inline"
+                label="Date"
                 value={selectedDate}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
@@ -127,7 +140,7 @@ export default function TopBar(props){
               <KeyboardTimePicker
                 margin="normal"
                 id="time-picker"
-                label="Time picker"
+                label="Time"
                 value={selectedDate}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
@@ -174,7 +187,7 @@ export default function TopBar(props){
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
-            classes={{paper: 'drawer-paper'}}
+            classes={{paper: 'drawer-paper-smUp'}}
             variant="permanent"
             open
           >

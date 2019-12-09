@@ -10,6 +10,10 @@ export const Container = styled.div`
   .drawer-paper{
     width: 240px;
   }
+  .drawer-paper-smUp{
+    width: 240px;
+    z-index:990;
+  }
   @media (min-width: 600px){
     .app-bar {
         width: calc(100% - 240px);
