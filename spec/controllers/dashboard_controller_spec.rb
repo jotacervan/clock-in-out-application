@@ -34,7 +34,7 @@ RSpec.describe DashboardController, type: :controller do
         it "returns 0 days_count" do
           get :index
           expect(JSON.parse(response.body)['odd_days'].count).to be(0)
-          expect(JSON.parse(response.body)['week_balance']).to eq("32:00:00")
+          expect(JSON.parse(response.body)['week_balance']).to eq("32:00")
         end
       end
     end
@@ -52,7 +52,7 @@ RSpec.describe DashboardController, type: :controller do
         it "returns 0 days_count" do
           get :index
           expect(JSON.parse(response.body)['odd_days'].count).to be(0)
-          expect(JSON.parse(response.body)['week_balance']).to eq("00:00:00")
+          expect(JSON.parse(response.body)['week_balance']).to eq("00:00")
         end
       end
     end
