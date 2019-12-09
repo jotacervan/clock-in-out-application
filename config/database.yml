@@ -17,6 +17,4 @@ test:
 
 production:
   <<: *default
-  database: clock_in_out_application_production
-  username: clock_in_out_application
-  password: <%= ENV['CLOCK_IN_OUT_APPLICATION_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
