@@ -34,7 +34,7 @@ export default function Dashboard() {
           <Typography compoent='p'>{currentUser.email}</Typography>
           <Typography compoent='p'>Week hours: {currentUser.hours_per_week}h</Typography>
         </div>
-        <Button variant='contained'>Access Profile</Button>
+        <Button variant='contained'>Edit Profile</Button>
       </Paper>
       <Divider className="section-divider" />
       <GroupIndicators>
@@ -46,8 +46,11 @@ export default function Dashboard() {
         <Paper className="indicator">
           Missing Entries
           <Divider />
-          {odd.length < 1 &&
+          { odd.length < 1 &&
             <div className="missing-entries">You don't have missing entries</div>
+          }
+          { odd.length > 0 &&
+            <div className="missing-entries">You have {odd.length} missing entries</div>
           }
         </Paper>
       </GroupIndicators>

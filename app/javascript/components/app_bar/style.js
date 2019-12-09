@@ -24,3 +24,12 @@ export const Container = styled.div`
     }
   }
 `
+
+export const ModalContent = styled.div`
+  background: #ffffff;
+  left:50%;
+  right: 50%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 10px 20px 20px;
+`

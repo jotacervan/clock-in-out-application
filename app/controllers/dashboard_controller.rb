@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
     week = DateTime.now.strftime('%U')
     odd_days = current_user.days.where(odd: true)
     week_days = current_user.days.where(week: week)
-    total_seconds = week_days.reduce{|total, ops| (total.seconds || total) + ops.seconds }
+    total_seconds = week_days.reduce(0){|total, ops| (total.seconds || total) + ops.seconds }
     worked_hours = format_duration(total_seconds || 0)
     week_seconds = current_user.hours_per_week * 3600
     diff = calc_diff(total_seconds || 0, week_seconds)
