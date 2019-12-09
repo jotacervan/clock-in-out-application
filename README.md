@@ -1,6 +1,6 @@
 # Clock In Out Application
 
-Clock In Out is an application that keep records of your work time, and makes easy for you to track your week hours balance.
+Clock In Out is an application that keep records of your work time, and makes easy for you to track your weekly hours balance.
 **demo: https://clock-registry-app.herokuapp.com/**
 
 ### Tech
