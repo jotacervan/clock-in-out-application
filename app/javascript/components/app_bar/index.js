@@ -62,7 +62,7 @@ export default function TopBar(props){
     }).catch(res => {
       console.log('Something wrong');
     })
-    handleClose();
+    location.reload();
   }
 
   const handleLogOut = async () => {

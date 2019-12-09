@@ -6,17 +6,20 @@ import Divider from '@material-ui/core/Divider';
 
 import { Container, GroupIndicators } from './style';
 import { MainContext } from '../../main_context';
+import PageLoader from '../PageLoader';
 import api from '../../services/api';
 
 export default function Dashboard() {
   const [currentUser] = useContext(MainContext);
   const [odd, setOdd] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const [weekBalance, setWeekBalance] = useState('00:00:00');
 
   useEffect(() => {
     api.get('/dashboard/index').then(({data}) => {
       setWeekBalance(data.week_balance)
       setOdd(data.odd_days)
+      setLoaded(true)
     }).catch(res => {
       console.log(res)
     })
@@ -24,6 +27,7 @@ export default function Dashboard() {
 
   return (
     <Container>
+      <PageLoader loaded={loaded} />
       <Paper className='welcome-card'>
         <div>
           <Typography compoent='p'>Welcome, </Typography>
@@ -44,13 +48,19 @@ export default function Dashboard() {
           <div className="week-balance">{weekBalance}</div>
         </Paper>
         <Paper className="indicator">
-          Missing Entries
+          <div>
+            Missing Entries
+          </div>
           <Divider />
           { odd.length < 1 &&
             <div className="missing-entries">You don't have missing entries</div>
           }
           { odd.length > 0 &&
-            <div className="missing-entries">You have {odd.length} missing entries</div>
+            <>
+              <div className="missing-entries">
+                You have {odd.length} missing entries. <a href="#">click here</a>
+              </div>
+            </>
           }
         </Paper>
       </GroupIndicators>
