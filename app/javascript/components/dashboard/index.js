@@ -58,7 +58,7 @@ export default function Dashboard() {
           { odd.length > 0 &&
             <>
               <div className="missing-entries">
-                You have {odd.length} missing entries. <a href="#">click here</a>
+                You have {odd.length} missing entries. <a href="/clock_events">click here</a>
               </div>
             </>
           }

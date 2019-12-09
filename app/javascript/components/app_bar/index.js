@@ -27,6 +27,25 @@ import {
 import { Container, ModalContent } from './style';
 import api from '../../services/api';
 
+const Menu = () => (
+  <div>
+    <div className='toolbar'></div>
+    <Divider />
+    <List>
+      <ListItem button component="a" href="/">
+        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemText primary='Dashboard' />
+      </ListItem>
+    </List>
+    <Divider />
+    <List>
+      <ListItem button>
+        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemText primary='Logout' />
+      </ListItem>
+    </List>
+  </div>
+)
 
 export default function TopBar(props){
   const [openModal, setOpen] = useState(false);
@@ -145,23 +164,7 @@ export default function TopBar(props){
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <div>
-              <div className='toolbar' />
-              <Divider />
-              <List>
-                <ListItem button>
-                  <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary='Dashboard' />
-                </ListItem>
-              </List>
-              <Divider />
-              <List>
-                <ListItem button>
-                  <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary='Logout' />
-                </ListItem>
-              </List>
-            </div>
+            <Menu />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -170,23 +173,7 @@ export default function TopBar(props){
             variant="permanent"
             open
           >
-            <div>
-              <div className='toolbar' />
-              <Divider />
-              <List>
-                <ListItem button>
-                  <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary='Dashboard' />
-                </ListItem>
-              </List>
-              <Divider />
-              <List>
-                <ListItem button onClick={handleLogOut}>
-                  <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary='Logout' />
-                </ListItem>
-              </List>
-            </div>
+            <Menu />
           </Drawer>
         </Hidden>
       </nav>
