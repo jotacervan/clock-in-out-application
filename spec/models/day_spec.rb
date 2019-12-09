@@ -12,7 +12,15 @@ RSpec.describe Day, type: :model do
       }.to change(Day,:count).by(+1)
     end
     it 'should not be valid without date_reg' do
-      day = build(:day, :wihout_date_reg)
+      day = build(:day, :without_date_reg)
+      expect(day.valid?).to be(false)
+    end
+    it 'should not be valid without month' do
+      day = build(:day, :without_month)
+      expect(day.valid?).to be(false)
+    end
+    it 'should not be valid without week' do
+      day = build(:day, :without_week)
       expect(day.valid?).to be(false)
     end
     it 'should raise activerecord invalid' do
