@@ -17,11 +17,10 @@ class DashboardController < ApplicationController
 
   protected
     def format_duration(total_seconds)
-      seconds = total_seconds % 60
       minutes = (total_seconds / 60) % 60
       hours = total_seconds / (60 * 60)
 
-      format("%02d:%02d:%02d", hours, minutes, seconds)
+      format("%02d:%02d", hours, minutes)
     end
     
     def calc_diff(total, target)

@@ -37,7 +37,7 @@ RSpec.describe TimeReg, type: :model do
       day.reload
       create(:time_reg, :end_day, day: day)
       day.reload
-      expect(day.hours).to eq("08:00:00")
+      expect(day.hours).to eq("08:00")
       expect(day.odd).to be(false)
     end
     it 'should update day to 3 hours and odd is false' do
@@ -45,7 +45,7 @@ RSpec.describe TimeReg, type: :model do
       create(:time_reg, day: day)
       create(:time_reg, :lunch_time, day: day)
       day.reload
-      expect(day.hours).to eq("03:00:00")
+      expect(day.hours).to eq("03:00")
       expect(day.odd).to be(false)
     end
     it 'should update day to 3 hours and odd is true' do
@@ -56,7 +56,7 @@ RSpec.describe TimeReg, type: :model do
       day.reload
       create(:time_reg, :end_lunch_time, day: day)
       day.reload
-      expect(day.hours).to eq("03:00:00")
+      expect(day.hours).to eq("03:00")
       expect(day.odd).to be(true)
     end
   end
@@ -98,14 +98,14 @@ RSpec.describe TimeReg, type: :model do
       @time3.destroy
       @time4.destroy
       @day.reload
-      expect(@day.hours).to eq("03:00:00")
+      expect(@day.hours).to eq("03:00")
       expect(@day.odd).to be(false)
     end
 
     it 'should update day hour to 3 and odd to true' do
       @time4.destroy
       @day.reload
-      expect(@day.hours).to eq("03:00:00")
+      expect(@day.hours).to eq("03:00")
       expect(@day.odd).to be(true)
     end
   end

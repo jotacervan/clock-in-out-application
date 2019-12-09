@@ -5,7 +5,7 @@ class Day < ApplicationRecord
   validates :date_reg, :month, :week, presence: true
 
   def hours
-    Time.at(self.seconds).utc.strftime('%H:%M:%S')
+    Time.at(self.seconds).utc.strftime('%H:%M')
   end
 
   def month_name
