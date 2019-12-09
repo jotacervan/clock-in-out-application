@@ -38,7 +38,7 @@ export default function Dashboard() {
           <Typography compoent='p'>{currentUser.email}</Typography>
           <Typography compoent='p'>Week hours: {currentUser.hours_per_week}h</Typography>
         </div>
-        <Button variant='contained'>Edit Profile</Button>
+        <Button variant='contained' component="a" href="/edit_profile" >Edit Profile</Button>
       </Paper>
       <Divider className="section-divider" />
       <GroupIndicators>
